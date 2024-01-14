@@ -1,0 +1,64 @@
+{% extends 'catalog/index.html' %}
+
+{% block title %}Продукты{% endblock %}
+
+{% block context %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">ТехноОткрытие</h1>
+    <p class="lead">Ваш проводник в мире технологий!</p>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col">
+            <div class="card-group">
+            {% for product in product_list %}
+                <div class="card mb-4 box-shadow">
+                      <img src="media/{{ product.img }}" class="card-img-top img-fluid rounded mx-auto d-block" alt="{{ product.name }}" style="width: auto; max-height: 120px; padding-top: 10px">
+                      <div class="card-body">
+                          <div class="card-header">
+                              <h4 class="card-title">{{ product.name }}</h4>
+                          </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{ product.price }} ₽</h1>
+                            <div class="truncate"><p>{{ product.description }}</p></div>
+                            <button type="button" class="btn btn-lg btn-block btn-outline-primary mt-3">Купить</button>
+                        </div>
+                      </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                ТехноОткрытие
+                <small class="d-block mb-3 text-muted">&copy; 2023</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Категории</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Рассылки</a></li>
+                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
+                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
+                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
+                    <li><a class="text-muted" href="#">Микросервисы</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Дополнительно</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Мы пишем</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>О нас</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/contacts/">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

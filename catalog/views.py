@@ -1,5 +1,8 @@
+import json
+
 from django.shortcuts import render
 
+from catalog.models import Product, Contacts
 from catalog.utils.utils import json_save
 
 
@@ -10,6 +13,11 @@ def index(request):
     :return: HTML-страницу 'index.html'
     """
     return render(request, 'catalog/index.html')
+
+
+def show_products(request):
+    product_list = Product.objects.all().order_by('-date_update')[:5]
+    return render(request, 'catalog/products.html', {'product_list': product_list})
 
 
 def contacts(request):
@@ -23,4 +31,5 @@ def contacts(request):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         json_save(name, phone, message)
-    return render(request, 'catalog/contacts.html')
+    contacts_list = Contacts.objects.all().order_by('pk')
+    return render(request, 'catalog/contacts.html', {'contacts_list': contacts_list})

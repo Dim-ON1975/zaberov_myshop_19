@@ -20,3 +20,12 @@ def json_save(name: str, phone: str, message: str) -> None:
             json.dump(data_json, outfile, ensure_ascii=False, indent=2)
 
 
+def json_read(path_file: str) -> list[dict]:
+    """
+    Чтение данных из файла json.
+    :param path_file: Полное имя файла
+    :return: Список словарей, list[dict].
+    """
+    with open(path_file, 'r', encoding='utf8') as file:
+        data_json = json.load(file)
+    return data_json
