@@ -1,0 +1,146 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Периферия",
+      "description": "Периферийные устройства для ПК"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Системные блоки",
+      "description": "Системные блоки для настольных ПК"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Ноутбуки",
+      "description": "Переносной (мобильный) ПК"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Смартфоны",
+      "description": "Мобильный телефон, дополненный функциональностью умного устройства"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Планшеты",
+      "description": "Небольшое устройство с сенсорным экраном, которое имеет практически те же возможности, что и обычный компьютер"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Ноутбук DEXP Aquilon серый",
+      "description": "Full HD (1920x1080), IPS, Intel Celeron N4020C, ядра: 2 х 1.1 ГГц, RAM 8 ГБ, SSD 256 ГБ, Intel UHD Graphics 600 , Windows 11 Home",
+      "img": "products/Nout_DEXP_Aquilon_grey.jpg",
+      "category": 3,
+      "price": 18699,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Планшет Xiaomi Pad 6 Wi-Fi 256 ГБ черный",
+      "description": "2880x1800, IPS, 8x3.2 ГГц, 8 ГБ, 8840 мА*ч, Android 13.x",
+      "img": "products/Xiaomi_Redmi_12_256_GB_black.png",
+      "category": 5,
+      "price": 39999,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Смартфон Xiaomi Redmi 12 256 ГБ черный",
+      "description": "Ядер - 8x(2 ГГц), 8 ГБ, 2 SIM, IPS, 2400x1080, камера 50+8+2 Мп, NFC, 4G, GPS, FM, 5000 мА*ч",
+      "img": "products/Xiaomi_Redmi_12_256_GB_black_3VB8OPh.png",
+      "category": 4,
+      "price": 14999,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "ПК ARDOR GAMING RAGE H326",
+      "description": "Intel Core i5-12400F, 6 x 2.5 ГГц, 16 ГБ DDR4, GeForce RTX 4060, SSD 1000 ГБ, без ОС",
+      "img": "products/ARDOR_GAMING_RAGE_H326.jpg",
+      "category": 2,
+      "price": 89999,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "МФУ струйное Canon PIXMA G3420",
+      "description": "Цветная печать, A4, 4800x1200 dpi, ч/б - 9.1 стр/мин (А4), USB type B, Wi-Fi, СНПЧ",
+      "img": "products/Canon_PIXMA_G3420.jpg",
+      "category": 1,
+      "price": 18499,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Монитор ARDOR GAMING PORTAL AF24H1 черный",
+      "description": "1920x1080 (FullHD)@144 Гц, IPS, LED, 1000:1, 280 Кд/м, 178/178, DisplayPort 1.4 x2, HDMI 2.0 x2, AMD FreeSync Compatible, NVIDIA G-SYNC Compatible",
+      "img": "products/ARDOR_GAMING_PORTAL_AF24H1_black.png",
+      "category": 1,
+      "price": 13499,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Клавиатура проводная Dark Project KD83A [DP-KD-83A-004500-GMT]",
+      "description": "Механическая G3ms Sapphire, клавиш - 83, USB, синяя",
+      "img": "products/Dark_Project_KD83A.jpg",
+      "category": 1,
+      "price": 8999,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "name": "Мышь проводная ARDOR GAMING Fury [ARD-FURY3327-BK] черный",
+      "description": "12400 dpi, светодиодный, USB Type-A, кнопки - 7",
+      "img": "products/ARDOR_GAMING_Fury_black.jpg",
+      "category": 1,
+      "price": 1599,
+      "date_add": "2024-01-13",
+      "date_update": "2024-01-13"
+    }
+  }
+]
