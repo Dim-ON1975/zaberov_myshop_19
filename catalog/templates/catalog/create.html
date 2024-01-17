@@ -1,0 +1,23 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Форма по добавлению товара{% endblock %}
+
+{% block context %}
+    <section class="py-0 text-center container">
+        <div class="row py-lg-2">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Форма по добавлению товара</h1>
+            <p class="lead text-body-secondary">Добавьте товар при помощи формы</p>
+          </div>
+        </div>
+    </section>
+    <div class="py-5 bg-light">
+        <div class="container">
+            <form action="" method="post" enctype="multipart/form-data" class="mb-3">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -12,13 +12,14 @@
         <h1 class="fw-light">ТехноОткрытие</h1>
         <p class="lead text-body-secondary">Ваш проводник в мире технологий!</p>
       </div>
+
     </div>
   </section>
 
   <div class="album py-5 bg-light">
     <div class="container">
        <div class="row text-center">
-           {% for product in product_list %}
+           {% for product in page_obj %}
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img src="{% mediapath product.img %}" class="card-img-top img-fluid rounded mx-auto d-block" alt="{{ product.name }}" style="width: auto; max-height: 120px; padding-top: 10px">
@@ -35,6 +36,15 @@
             </div>
            {% endfor %}
        </div>
+       <!-- Пагинация -->
+       <nav aria-label="Навигация по страницам">
+          <ul class="pagination justify-content-center">
+                {% for p in page_obj.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                {% endfor %}
+          </ul>
+       </nav>
+       <!-- /Пагинация -->
     </div>
   </div>
 </main>

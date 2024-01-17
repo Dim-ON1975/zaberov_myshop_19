@@ -9,5 +9,8 @@ urlpatterns = [
     # продукт
     path('catalog/<int:pk>/', views.product_item, name='product'),
     # контакты
-    path('contacts/', views.contacts, name='contacts')
+    path('contacts/', views.contacts, name='contacts'),
+    # добавление продукта через форму
+    path('create/', views.create, name='create'),
+    path('check/', views.check, name='check')
 ]
