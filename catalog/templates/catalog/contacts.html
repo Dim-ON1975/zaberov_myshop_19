@@ -1,13 +1,17 @@
-{% extends 'catalog/index.html' %}
+{% extends 'catalog/base.html' %}
 
 {% block title %}Контакты{% endblock %}
 
 {% block context %}
-
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Контакты</h1>
-</div>
-
+<section class="py-0 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Контакты</h1>
+        <p class="lead text-body-secondary">Наши контактные данные</p>
+      </div>
+    </div>
+</section>
+<div class="py-5 bg-light">
 <div class="container">
     <div class="row text-start">
         <div class="col-lg-9 col-md-6 col-sm-12">
@@ -59,36 +63,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                ТехноОткрытие
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Дополнительно</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>О нас</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="/contacts/">Контакты</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+</div>
 </div>
 {%  endblock %}
