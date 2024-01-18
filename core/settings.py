@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Мои приложения
     'catalog',
+    # Формы Бутстрап
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [

@@ -75,6 +75,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-forms-bootstrap"
+version = "3.1.0"
+description = "a simple form filter for using Django forms with Bootstrap"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-forms-bootstrap-3.1.0.tar.gz", hash = "sha256:ffc6d2b9fba03e2366884e82f613daf1284702e9346746e0e9de299db8138d6f"},
+    {file = "django_forms_bootstrap-3.1.0-py2.py3-none-any.whl", hash = "sha256:50d69baf6c6f262f6ae3651096b52c31552cb75d37493f0c917ce2c16d13f0d9"},
+]
+
+[[package]]
 name = "executing"
 version = "2.0.1"
 description = "Get the currently executing AST node of a frame, and other information"
@@ -491,4 +502,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a277def696207fc71f2b4aaec15c7251da5c5e133c11d45b3e9e3e7888e51a78"
+content-hash = "87261a0e074446a83a29ab19a33fe38c7537fa4e14c22bd07aca19f775f440ee"
