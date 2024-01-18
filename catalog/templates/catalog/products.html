@@ -28,7 +28,7 @@
                         <h4 class="card-title" style="margin: 0;">{{ product.name }}</h4>
                   </div>
                     <h1 class="card-title pricing-card-title">{{ product.price }} ₽</h1>
-                    <p class="card-text">{{ product.description|slice:100 }}...</p>
+                    <p class="card-text">{{ product.description|slice:80 }}...</p>
                     <p><a class="btn btn-lg btn-block btn-outline-primary mt-3" href="/catalog/{{ product.pk }}" role="button">Купить</a></p>
                     <small class="text-body-secondary">{{ product.date_update }}</small>
                 </div>
