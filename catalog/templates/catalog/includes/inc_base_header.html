@@ -1,42 +1,41 @@
 {% load static %}
-<header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">О нас</h4>
+<header data-bs-theme="dark">
+  <div class="collapse text-bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">О нас</h4>
               <p class="text-muted">
                 «ТехноОктрытие» — магазин компьютерной техники, на рынке с 2024 года.
                 В портфеле услуг — сборка компьютеров под заказ и другие услуги.
               </p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Для Вас</h4>
-              <ul class="list-unstyled">
-                <li><a href="/" class="text-white">Каталог</a></li>
-                <li><a href="/contacts/" class="text-white">Контактные данные</a></li>
-              </ul>
-            </div>
-          </div>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Для Вас</h4>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-white">Каталог</a></li>
+            <li><a href="/contacts/" class="text-white">Контактные данные</a></li>
+          </ul>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>ТехноОткрытие</strong>
-          </a>
-          <nav class="ms-5">
-              <a class="p-2 btn btn-outline-light" href="/">Каталог</a>
-              <a class="p-2 btn btn-outline-light" href="/contacts/">Контакты</a>
-              <a class="p-2 btn btn-outline-light" href="{% url 'create' %}">&#9989; Добавить товар</a>
-          </nav>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div style="float: right; right: 1%;">
-           <img id="specialButton" style="cursor:pointer; margin-right: 10px;" src="{% static 'img/special_green.png' %}" alt="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" title="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" />
-        </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+          <strong>ТехноОткрытие</strong>
+      </a>
+      <nav class="ms-5">
+          <a class="p-2 btn btn-outline-light" href="/">Каталог</a>
+          <a class="p-2 btn btn-outline-light" href="/contacts/">Контакты</a>
+          <a class="p-2 btn btn-outline-light" href="{% url 'create' %}">&#9989; Добавить товар</a>
+      </nav>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div style="position: absolute; right: 1%;">
+        <img id="specialButton" style="cursor:pointer;" src="{% static 'img/special_white.png' %}" alt="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" title="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" />
       </div>
-
+    </div>
+  </div>
 </header>
