@@ -39,9 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Мои приложения
     'catalog',
-    # Формы Бутстрап
-    'django_forms_bootstrap',
+    # django_crispy_forms
+    'crispy_forms',
+    "crispy_bootstrap5",
+    # django-forms-bootstrap
+    # 'django_forms_bootstrap',
 ]
+# для django_crispy_forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
