@@ -7,8 +7,6 @@ from .models import Product
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    # # главная страница
-    # path('', views.index, name='index'),
     # продукты в обратном порядке по дате изменения - главная страница
     path('', ProductsListView.as_view(queryset=Product.objects.order_by("-date_update")), name='products'),
     # продукт

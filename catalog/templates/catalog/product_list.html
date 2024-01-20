@@ -5,14 +5,12 @@
 
 {% block context %}
 <main>
-
   <section class="py-0 text-center container">
     <div class="row py-lg-2">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">ТехноОткрытие</h1>
         <p class="lead text-body-secondary">Ваш проводник в мире технологий!</p>
       </div>
-
     </div>
   </section>
 
@@ -52,29 +50,7 @@
            {% endfor %}
        </div>
        <!-- Пагинация -->
-        {% if page_obj.has_other_pages %}
-        <nav aria-label="Навигация по страницам">
-              <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                  <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
-                  </li>
-                {% endif %}
-                {% for p in paginator.page_range %}
-                  {% if page_obj.number == p %}
-                    <li class="page-item"><a class="page-link active" href="?page={{ p }}">{{ p }}</a></li>
-                  {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
-                    <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
-                  {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                  <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>
-                  </li>
-                {% endif %}
-              </ul>
-       </nav>
-       {% endif %}
+       {% include 'catalog/includes/inc_base_paginator.html' %}
        <!-- /Пагинация -->
     </div>
   </div>
