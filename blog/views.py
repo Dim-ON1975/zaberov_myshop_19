@@ -4,6 +4,7 @@ from django.urls import reverse_lazy, reverse
 from pytils.translit import slugify
 
 from blog.models import Post
+from blog.services import sending_mail
 
 
 class DataMixin:
@@ -30,6 +31,8 @@ class PostDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.view_count += 1
         self.object.save()
+        if self.object.view_count == 100:
+            sending_mail(self.object.title)
         return self.object
 
 
