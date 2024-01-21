@@ -28,6 +28,7 @@ class Product(models.Model):
     price = models.IntegerField(default=0, validators=[MinValueValidator(0)], verbose_name='цена')
     date_add = models.DateField(auto_now_add=True, verbose_name='дата создания')
     date_update = models.DateField(auto_now=True, verbose_name='дата изменения')
+    is_active = models.BooleanField(default=True, verbose_name='наличие товара')
 
     def __str__(self):
         # Строковое отображение объекта
@@ -36,7 +37,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
-        ordering = ('name', 'category', 'price', 'date_add', 'date_update')
+        ordering = ('name', 'category', 'price', 'date_add', 'date_update', 'is_active')
 
 
 class Contacts(models.Model):

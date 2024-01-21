@@ -23,6 +23,7 @@
                           <br>
                           <p class="card-text mb-auto">{{ object.body }}</p>
                           <br>
+                          <div class="mb-1 text-muted">Просмотров: {{ object.view_count }}</div>
                           <a href="{% url 'blog:view' %}">Вернуться назад</a>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import os
 
 from django.core.management import BaseCommand, call_command
 
-from blog.models import Post
+from catalog.models import Category, Product
 from core.settings import BASE_DIR
 from django.db.utils import ProgrammingError, IntegrityError
 
@@ -11,10 +11,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Удаляем данные из таблиц БД
-        Post.objects.all().delete()
+        Category.objects.all().delete()
+        Product.objects.all().delete()
 
         # Путь к фикстурам
-        path_fixture = os.path.join(BASE_DIR, 'fixtures', 'blog_data.json')
+        path_fixture = os.path.join(BASE_DIR, 'fixtures', 'catalog_data.json')
 
         # Вызов команды loaddata - загрузка данных в БД из фикстур
         try:
