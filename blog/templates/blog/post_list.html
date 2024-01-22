@@ -28,7 +28,7 @@
                           <strong class="d-inline-block mb-2 text-secondary">Автор неизвестен</strong>
                           <h4 class="mb-0 text-dark"><a class="link-dark link-offset-1 link-offset-1-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'blog:detail' object.pk %}">{{ object.title }}</a></h4>
                           <div class="mb-1 text-muted" style="font-size: 12px;">{{ object.slug }}</div>
-                          <div class="mb-3 text-muted">{{ object.date_publish|date:'d.m.Y H:i:s' }}, просмотров: {{ object.view_count }}</div>
+                          <div class="mb-3 text-muted">{{ object.published_at|date:'d.m.Y H:i:s' }}, просмотров: {{ object.view_count }}</div>
 
                           <p class="card-text">{{ object.body|slice:200 }}...</p>
                           <div class="btn-group" style="float: left; margin-top: 5px; margin-bottom: 0;">

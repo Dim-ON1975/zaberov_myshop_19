@@ -22,7 +22,7 @@
                           <strong class="d-inline-block mb-2 text-primary">{{ category }}</strong>
                           <h3 class="mb-0 text-dark">Хотите удалить товар "{{ product.name }}"?</h3>
                           <h4 class="mb-0 text-primary">{{ product.price }} ₽</h4>
-                          <div class="mb-1 text-muted">Дата изменения: {{ product.date_update|date:'d.m.Y' }}</div>
+                          <div class="mb-1 text-muted">Дата изменения: {{ product.updated_at|date:'d.m.Y' }}</div>
                           <form method="post" style="margin-top: 10px;">
                               {% csrf_token %}
                               <button type="submit"  class="btn btn-danger">Удалить</button>

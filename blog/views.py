@@ -16,9 +16,9 @@ class PostListView(DataMixin, ListView):
     model = Post
 
     def get_queryset(self, *args, **kwargs):
-        """ Отображение только опубликованных постов (фильтрация по полю status """
+        """ Отображение только опубликованных постов (фильтрация по полю is_published """
         queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(status=True)
+        queryset = queryset.filter(is_published=True)
         return queryset
 
 
@@ -39,7 +39,7 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     """ Форма создания поста """
     model = Post
-    fields = ('title', 'body', 'img', 'date_publish', 'status')
+    fields = ('title', 'body', 'img', 'published_at', 'is_published')
     success_url = reverse_lazy('blog:view')
 
     def form_valid(self, form):
@@ -55,7 +55,7 @@ class PostCreateView(CreateView):
 class PostUpdateView(UpdateView):
     """ Форма редактирования поста """
     model = Post
-    fields = ('title', 'body', 'img', 'date_publish', 'status')
+    fields = ('title', 'body', 'img', 'published_at', 'is_published')
 
     def form_valid(self, form):
         """ Формирование слага """
