@@ -28,6 +28,11 @@
                     {% if object.is_active %}
                         <div class="badge bg-light text-success text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
                             В наличии
+                            {% for version in version_list %}
+                                {% if object.name == version.product.name and version.is_active == True %}
+                                     | {{ version.name_version }}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <h1 class="card-title pricing-card-title">{{ object.price }} ₽</h1>
                     {% else %}

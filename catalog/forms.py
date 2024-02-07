@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import Product, Version
 
 
 class ProductForm(forms.ModelForm):
@@ -22,3 +22,9 @@ class ProductForm(forms.ModelForm):
             if s.lower() in cleaned_description.lower():
                 raise forms.ValidationError('Описание товара содержит недопустимые данные')
         return cleaned_description
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'

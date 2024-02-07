@@ -10,13 +10,52 @@ class Category(models.Model):
     description = models.TextField(max_length=1000, verbose_name='описание')
 
     def __str__(self):
-        # Строковое отображение объекта
         return self.name
 
     class Meta:
         verbose_name = 'категория'  # Настройка для наименования одного объекта
         verbose_name_plural = 'категории'  # Настройка для наименования набора объектов
         ordering = ('name',)  # Фильтрация
+
+
+class Version(models.Model):
+    """ Версия продукта """
+    NUMBER_VERSION_CHOICES = (
+        (1, "1"),
+        (2, "2"),
+        (3, "3"),
+        (4, "4"),
+        (5, "5"),
+        (6, "6"),
+        (7, "7"),
+        (8, "8"),
+        (9, "9"),
+        (10, "10"),
+        (11, "11"),
+        (12, "12"),
+    )
+    VERSION_CHOICES = (
+        ("базовая", "базовая"),
+        ("новинка", "новинка"),
+        ("распродажа", "распродажа"),
+        ("скидка", "скидка"),
+        ("витрина", "витрина"),
+        ("уценённый", "уценённый"),
+    )
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='продукт')
+    num_version = models.PositiveIntegerField(choices=NUMBER_VERSION_CHOICES, default='1',
+                                              verbose_name='номер')
+    name_version = models.CharField(max_length=10, choices=VERSION_CHOICES, default='базовая',
+                                    verbose_name='название')
+    is_active = models.BooleanField(default=False, verbose_name='активная')
+
+    def __str__(self):
+        return f'{self.product}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
+        ordering = ('product', 'num_version', 'name_version', 'is_active')
 
 
 class Product(models.Model):
@@ -31,8 +70,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='наличие товара')
 
     def __str__(self):
-        # Строковое отображение объекта
-        return f'{self.name} {self.description} {self.category} {self.price}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'продукт'
@@ -55,5 +93,3 @@ class Contacts(models.Model):
         verbose_name = 'контакт'
         verbose_name_plural = 'контакты'
         ordering = ('first_name', 'last_name', 'position', 'phone', 'email')
-
-

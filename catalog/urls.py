@@ -9,7 +9,7 @@ app_name = CatalogConfig.name
 
 urlpatterns = [
     # продукты в обратном порядке по дате изменения - главная страница
-    path('', ProductsListView.as_view(queryset=Product.objects.order_by("-is_active", "-updated_at")), name='products'),
+    path('', ProductsListView.as_view(), name='products'),
     # продукт
     path('catalog/<int:pk>/', ProductDetailView.as_view(), name='product'),
     # контакты
