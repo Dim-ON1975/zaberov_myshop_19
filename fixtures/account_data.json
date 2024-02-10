@@ -1,0 +1,40 @@
+[
+{
+    "model": "account.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$6kKyi2Lp6ItDBcA2zM8RCQ$w8o2PZmkRDJVzjS5RgQslYf+LpSJXgGBak2qezwt6+g=",
+        "last_login": "2024-02-10T11:53:19.714Z",
+        "is_superuser": true,
+        "first_name": "Дмитрий",
+        "last_name": "Заберов",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-02-09T18:17:18.546Z",
+        "email": "zaberov.dv@internet.ru",
+        "phone": "+7 929 873-45-47",
+        "avatar": "users/2024/02/10/1662642122_5-kartinkin-net.jpg",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$XNzIDNdyC66RBE58VBVQfZ$CBndYrG6gtp3m5upXiLdng237owUpoH1XZuhmFHX9sw=",
+        "last_login": "2024-02-09T20:03:34.818Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-02-09T20:03:11.862Z",
+        "email": "test_2@test.ru",
+        "phone": null,
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

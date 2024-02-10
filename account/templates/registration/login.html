@@ -1,0 +1,28 @@
+{% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block context %}
+    <section class="py-0 text-center container">
+        <div class="row py-lg-2">
+          <div class="col-lg-6 col-md-8 mx-auto">
+              <h1 class="fw-middle">Вход</h1>
+
+          </div>
+        </div>
+    </section>
+    <div class="py-5" style="background-color: #f8f8f6;">
+        <div class="container" style="width: 40%;">
+            <form action="{% url 'account:login' %}" method="post" class="mb-3">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="form-actions">
+
+                    <input type="submit"  class="btn btn-success" value="Войти">
+                 </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

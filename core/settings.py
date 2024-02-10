@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     # Мои приложения
     'catalog',
     'blog',
+    'account',
     # django_crispy_forms
     'crispy_forms',
     "crispy_bootstrap5",
     # django-forms-bootstrap
-    # 'django_forms_bootstrap',
+    # 'django_forms_bootstrap'
 ]
 # для django_crispy_forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -162,3 +163,9 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD_YANDEX')
 EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL_YANDEX')
 EMAIL_ADMIN = EMAIL_HOST_USER
+
+# АВТОРИЗАЦИЯ ПОЛЬЗОВАТЕЛЯ
+AUTH_USER_MODEL = 'account.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
