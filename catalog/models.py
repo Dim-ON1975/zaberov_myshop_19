@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django import forms
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -51,6 +52,11 @@ class Version(models.Model):
 
     def __str__(self):
         return f'{self.product}'
+
+    # def save(self, *args, **kwargs):
+    #     if self.is_active:
+    #         Version.objects.filter(product=self.product).exclude(pk=self.pk).update(is_active=False)
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'версия'

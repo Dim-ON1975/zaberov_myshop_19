@@ -9,6 +9,9 @@ class User(AbstractUser):
 
     phone = models.CharField(max_length=35, **NULLABLE, verbose_name='телефон')
     avatar = models.ImageField(upload_to='users/%Y/%m/%d/', **NULLABLE, verbose_name='аватар')
+    country = models.CharField(max_length=100, verbose_name='страна', **NULLABLE)
+
+    email_verify = models.BooleanField(default=False, verbose_name='верификация почты')
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

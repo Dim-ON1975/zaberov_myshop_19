@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView, D
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.forms.models import inlineformset_factory
+from django.contrib import messages
 
 
 class ProductsListView(ListView):
@@ -63,6 +64,8 @@ class ProductUpdateView(UpdateView):
         if formset.is_valid():
             formset.instance = self.object
             formset.save()
+        else:
+            messages.error(self.request, 'Выберете только одну активную версию')
         return super().form_valid(form)
 
 

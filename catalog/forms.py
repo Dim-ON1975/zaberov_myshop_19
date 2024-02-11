@@ -28,3 +28,12 @@ class VersionForm(forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
+
+    def clean_is_active(self):
+        is_active = self.cleaned_data.get('is_active')
+        all_active_versions = Version.objects.all().filter(product=self.cleaned_data.get('product')).filter(
+            is_active=True)
+        if len(all_active_versions) >= 1 and is_active:
+            if len(all_active_versions.filter(num_version=self.cleaned_data.get('num_version'))) == 0:
+                raise forms.ValidationError('Выберете только одну активную версию')
+        return is_active
