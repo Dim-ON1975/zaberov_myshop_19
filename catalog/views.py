@@ -3,9 +3,13 @@ from catalog.models import Product, Contacts, Version
 
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import get_object_or_404, redirect
 from django.forms.models import inlineformset_factory
 from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+from core.settings import LOGIN_URL
 
 
 class ProductsListView(ListView):
@@ -34,14 +38,29 @@ class ContactsListView(ListView):
     model = Contacts
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     """ Добавление (создание) товара """
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:products')
 
+    def form_valid(self, form):
+        # Получаем текущего пользователя
+        user = self.request.user
+        # Присваиваем текущего пользователя полю user нового продукта
+        form.instance.user = user
+        # Сохраняем экземпляр модели перед вызовом super().form_valid()
+        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+    def get_form_kwargs(self):
+        # Получаем ключевые аргументы для формы
+        kwargs = super().get_form_kwargs()
+        # Изменяем аргументы формы, добавляя пользователя в их начальные значения
+        kwargs['initial'] = {'user': self.request.user}
+        return kwargs
+
+
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Редактирование товара """
     model = Product
     form_class = ProductForm
@@ -58,6 +77,10 @@ class ProductUpdateView(UpdateView):
             context_data['formset'] = SubjectFormset(instance=self.object)
         return context_data
 
+    def test_func(self):
+        product = self.get_object()
+        return self.request.user == product.user
+
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
         self.object.save()
@@ -69,12 +92,18 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """ Удаление товара """
     model = Product
     success_url = reverse_lazy('catalog:products')
 
+    def test_func(self):
+        product = self.get_object()
+        return self.request.user == product.user
 
+
+@login_required
+@user_passes_test(lambda u: lambda product_id: u == get_object_or_404(Product, pk=product_id).user, login_url=LOGIN_URL)
 def toggle_activity(request, pk):
     """ Активация/деактивация товара """
     product_item = get_object_or_404(Product, pk=pk)

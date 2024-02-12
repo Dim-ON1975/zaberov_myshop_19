@@ -66,6 +66,7 @@ class Version(models.Model):
 
 class Product(models.Model):
     """ Товары (продукты) """
+    user = models.ForeignKey('account.User', on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
     name = models.CharField(max_length=250, verbose_name='наименование')
     description = models.TextField(max_length=1000, verbose_name='описание')
     img = models.ImageField(upload_to='products/', verbose_name='превью', **NULLABLE)

@@ -7,7 +7,20 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'img', 'category', 'price', 'is_active',)
+        fields = ('name', 'description', 'img', 'category', 'price', 'is_active', 'user',)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)  # Извлекаем атрибут request
+        super().__init__(*args, **kwargs)
+        self.fields['user'].widget = forms.HiddenInput()  # Скрываем поле user
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.request:
+            instance.user = self.request.user  # Устанавливаем текущего пользователя в качестве автора
+        if commit:
+            instance.save()
+        return instance
 
     def clean_name(self):
         cleaned_name = self.cleaned_data['name']
