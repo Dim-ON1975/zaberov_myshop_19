@@ -19,7 +19,7 @@
               </a>
               <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                 <li><a class="dropdown-item" href="{% url 'account:update_profile' %}">Редактировать профиль</a></li>
-                <li><a class="dropdown-item" href="#">Сменить пароль</a></li>
+                <li><a class="dropdown-item" href="{% url 'account:password_change' %}">Сменить пароль</a></li>
                 <li><a class="dropdown-item" href="{% url 'account:profile' %}">Профиль</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'account:logout' %}">Выйти</a></li>

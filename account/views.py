@@ -10,12 +10,14 @@ from account.services import send_email_for_verify
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.exceptions import ValidationError
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeDoneView, PasswordChangeView, PasswordResetView, \
+    PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 
 class MyLoginView(LoginView):
     """Авторизация"""
     form_class = AuthenticationForm
+    template_name = "account/login.html"
 
 
 class RegisterView(CreateView):
@@ -90,3 +92,32 @@ class UserDeleteView(DeleteView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class MyPasswordChangeView(PasswordChangeView):
+    success_url = reverse_lazy("account:password_change_done")
+    template_name = "account/password_change_form.html"
+
+
+class MyPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = "account/password_change_done.html"
+
+
+class MyPasswordResetView(PasswordResetView):
+    email_template_name = "account/password_reset_email.html"
+    success_url = reverse_lazy("account:password_reset_done")
+    template_name = "account/password_reset_form.html"
+
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "account/password_reset_done.html"
+
+
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy("account:password_reset_complete")
+    template_name = "account/password_reset_confirm.html"
+
+
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "account/password_reset_complete.html"
+

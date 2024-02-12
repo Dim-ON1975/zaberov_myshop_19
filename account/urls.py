@@ -1,16 +1,25 @@
-from django.urls import path
+from django.urls import path, include
 from account.apps import AccountConfig
-from django.contrib.auth.views import LoginView, LogoutView, TemplateView
-from account.views import RegisterView, ProfileUpdateView, ProfileDetailView, UserDeleteView, EmailVerify, MyLoginView
-
+from django.contrib.auth.views import LogoutView, TemplateView, PasswordResetConfirmView, PasswordResetCompleteView
+from account.views import RegisterView, ProfileUpdateView, ProfileDetailView, UserDeleteView, EmailVerify, MyLoginView, \
+    MyPasswordChangeDoneView, MyPasswordChangeView, MyPasswordResetView, MyPasswordResetDoneView, \
+    MyPasswordResetConfirmView, MyPasswordResetCompleteView
 
 app_name = AccountConfig.name
 
 urlpatterns = [
     # Авторизация
-    path('', MyLoginView.as_view(), name='login'),
+    path('login/', MyLoginView.as_view(), name='login'),
     # Выход
     path('logout/', LogoutView.as_view(), name='logout'),
+    # Смена пароля
+    path('password-change/', MyPasswordChangeView.as_view(), name='password_change'),
+    path('password-change/done/', MyPasswordChangeDoneView.as_view(), name='password_change_done'),
+    # Сброс пароля
+    path('password-reset/', MyPasswordResetView.as_view(), name='password_reset'),
+    path('password-reset/done/', MyPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password-reset/<uidb64>/<token>/', MyPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password-reset/complete/', MyPasswordResetCompleteView.as_view(), name='password_reset_complete'),
     # Регистрация
     path('register/', RegisterView.as_view(), name='register'),
     # Сообщение об отправке на почту подтверждения
