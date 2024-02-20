@@ -75,6 +75,7 @@ class Product(models.Model):
     created_at = models.DateField(auto_now_add=True, verbose_name='дата создания')
     updated_at = models.DateField(auto_now=True, verbose_name='дата изменения')
     is_active = models.BooleanField(default=True, verbose_name='наличие товара')
+    is_published = models.BooleanField(default=False, verbose_name='опубликован')
 
     def __str__(self):
         return f'{self.name}'
@@ -82,7 +83,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
-        ordering = ('name', 'category', 'price', 'created_at', 'updated_at', 'is_active')
+        ordering = ('name', 'category', 'price', 'created_at', 'updated_at', 'is_active', 'is_published')
 
 
 class Contacts(models.Model):

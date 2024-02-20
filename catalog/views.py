@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import Http404
 
 from core.settings import LOGIN_URL
 
@@ -19,7 +20,28 @@ class ProductsListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.order_by("-is_active", "-updated_at").distinct()
+        queryset = queryset.order_by("-is_active", "-updated_at").filter(is_published=True).distinct()
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['version_list'] = Version.objects.get_queryset(**kwargs)
+        return context_data
+
+
+class ProductsUserListView(LoginRequiredMixin, ListView):
+    """ Отображение товаров """
+    model = Product
+    template_name = 'catalog/product_user_list.html'
+    paginate_by = 3
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        if self.request.user.groups.filter(name='moderators').exists():
+            queryset = queryset.order_by("-is_published", "-is_active", "-updated_at").distinct()
+        else:
+            queryset = queryset.order_by("-is_published", "-is_active", "-updated_at").filter(
+                user=self.request.user).distinct()
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -42,7 +64,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     """ Добавление (создание) товара """
     model = Product
     form_class = ProductForm
-    success_url = reverse_lazy('catalog:products')
+    permission_required = 'catalog.add_product'
+    success_url = reverse_lazy('catalog:products_user')
 
     def form_valid(self, form):
         # Получаем текущего пользователя
@@ -64,6 +87,13 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """ Редактирование товара """
     model = Product
     form_class = ProductForm
+    permission_required = 'catalog.crate_product'
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if not self.request.user.is_staff:
+            raise Http404
+        return self.object
 
     def get_success_url(self, *args, **kwargs):
         return reverse('catalog:update', args=[self.get_object().pk])
@@ -96,6 +126,7 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """ Удаление товара """
     model = Product
     success_url = reverse_lazy('catalog:products')
+    permission_required = 'catalog.delete_product'
 
     def test_func(self):
         product = self.get_object()

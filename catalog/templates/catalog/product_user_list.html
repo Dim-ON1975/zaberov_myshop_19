@@ -1,15 +1,15 @@
 {% extends 'catalog/base.html' %}
 {% load catalog_tags %}
 
-{% block title %}Продукты{% endblock %}
+{% block title %}Продукты пользователя{% endblock %}
 
 {% block context %}
 <main>
   <section class="py-0 text-center container">
     <div class="row py-lg-2">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">ТехноОткрытие</h1>
-        <p class="lead text-body-secondary">Ваш проводник в мире технологий!</p>
+        <h1 class="fw-light">Мои товары</h1>
+        <p class="lead text-body-secondary">Товары, которые Вы можете редактировать</p>
       </div>
     </div>
   </section>
@@ -34,11 +34,29 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
+                        {% if object.is_published %}
+                            <div class="badge bg-light text-success text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
+                                 Опубликован
+                            </div>
+                        {% else %}
+                            <div class="badge bg-light text-danger text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
+                                 Не опубликован
+                            </div>
+                        {% endif %}
                         <h1 class="card-title pricing-card-title">{{ object.price }} ₽</h1>
                     {% else %}
                         <div class="badge bg-light text-danger text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
                             Нет в наличии
                         </div>
+                        {% if object.is_published %}
+                            <div class="badge bg-light text-success text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
+                                 Опубликован
+                            </div>
+                        {% else %}
+                            <div class="badge bg-light text-danger text-uppercase mb-2 pt-2 pb-2" style="width: 100%;">
+                                 Не опубликован
+                            </div>
+                        {% endif %}
                         <h1 class="card-title pricing-card-title">0 ₽</h1>
                     {% endif %}
                     <p class="card-text">{{ object.description|slice:80 }}...</p>
@@ -47,7 +65,7 @@
                     {% else %}
                         <p><a class="btn btn-lg btn-block btn btn-outline-secondary mt-3" href="{% url 'catalog:product' object.pk %}" role="button" style="pointer-events: none; cursor: default; color: #888;">Купить</a></p>
                     {% endif %}
-                    {% if user.is_authenticated and user == object.user %}
+                    {% if user.is_authenticated %}
                         <div class="btn-group" style="float: left; margin-top: 12px;">
                           <a class="btn btn-sm btn-outline-secondary" href="{% url 'catalog:update' object.pk %}" role="button">
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" style="vertical-align: -.35em;"><title>Изменить</title>

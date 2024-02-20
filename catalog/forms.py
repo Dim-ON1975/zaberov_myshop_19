@@ -7,7 +7,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'img', 'category', 'price', 'is_active', 'user',)
+        fields = ('name', 'description', 'img', 'category', 'price', 'is_active', 'is_published', 'user',)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)  # Извлекаем атрибут request

@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$600000$6kKyi2Lp6ItDBcA2zM8RCQ$w8o2PZmkRDJVzjS5RgQslYf+LpSJXgGBak2qezwt6+g=",
-        "last_login": "2024-02-12T16:45:17.071Z",
+        "last_login": "2024-02-20T13:32:13.816Z",
         "is_superuser": true,
         "first_name": "Дмитрий",
         "last_name": "Заберов",
@@ -25,7 +25,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$600000$FOlxLWL5XaWKLWPxGpVLiN$6Hp5VF0MKOEulUhjovYlWT+6kUb3qSE/KtD10nBKqww=",
-        "last_login": "2024-02-11T15:37:18Z",
+        "last_login": "2024-02-20T13:33:07.039Z",
         "is_superuser": false,
         "first_name": "Елена",
         "last_name": "Петрова",
@@ -37,7 +37,9 @@
         "avatar": "users/2024/02/11/2c699dff98ff95a510e27297da2c59ea_pPgRIzp.jpg",
         "country": "Россия",
         "email_verify": true,
-        "groups": [],
+        "groups": [
+            1
+        ],
         "user_permissions": []
     }
 },
@@ -46,7 +48,7 @@
     "pk": 6,
     "fields": {
         "password": "pbkdf2_sha256$600000$0CnxOJRFMiRRpWbkjMBuFF$YAy+rMjGm7nWKgypRri/EHPRnp49uBvJ51gcD/jcJ1U=",
-        "last_login": null,
+        "last_login": "2024-02-20T13:39:57.486Z",
         "is_superuser": false,
         "first_name": "Иван",
         "last_name": "Иванов",
@@ -67,19 +69,21 @@
     "pk": 56,
     "fields": {
         "password": "pbkdf2_sha256$600000$9FIvSJCSkut0vAPU6oxjk0$cVqhP2wXeCEJFLNus/1MkAJlalWfc1LOhL9zc+YLvD0=",
-        "last_login": "2024-02-12T18:25:31.067Z",
+        "last_login": "2024-02-20T13:25:57.776Z",
         "is_superuser": false,
         "first_name": "Кирилл",
         "last_name": "Пушин",
-        "is_staff": false,
+        "is_staff": true,
         "is_active": true,
-        "date_joined": "2024-02-12T16:45:42.194Z",
+        "date_joined": "2024-02-12T16:45:42Z",
         "email": "zaberov.dv@gmail.com",
         "phone": "+7 919 548-87-98",
         "avatar": "users/2024/02/12/1662642172_2-kartinkin-net-p-risunok-na-avatarku-dlya-muzhchin-instagra_4ubOlIU.jpg",
         "country": "Россия",
         "email_verify": true,
-        "groups": [],
+        "groups": [
+            1
+        ],
         "user_permissions": []
     }
 }
