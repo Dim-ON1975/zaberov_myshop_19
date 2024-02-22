@@ -1,0 +1,44 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_tags %}
+
+{% block title %}Категории{% endblock %}
+
+{% block context %}
+<main>
+  <section class="py-0 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Категории товаров</h1>
+        <p class="lead text-body-secondary">Выберите категорию для просмотра</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+       <div class="row text-center">
+           {% for object in object_list %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <div class="card-header">
+                        <h4 class="card-title" style="margin: 0;">{{ object.name }}</h4>
+                  </div>
+                    <p class="card-text">{{ object.description|slice:100 }}...</p>
+                    {% if user.is_authenticated %}
+                        <p><a class="btn btn-lg btn-block btn btn-outline-success mt-3" href="{% url 'catalog:products_user' object.pk %}" role="button">Смотреть</a></p>
+                    {% else %}
+                        <p><a class="btn btn-lg btn-block btn btn-outline-success mt-3" href="{% url 'catalog:products' object.pk %}" role="button">Смотреть</a></p>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+           {% endfor %}
+       </div>
+       <!-- Пагинация -->
+       {% include 'catalog/includes/inc_base_paginator.html' %}
+       <!-- /Пагинация -->
+    </div>
+  </div>
+</main>
+{% endblock %}

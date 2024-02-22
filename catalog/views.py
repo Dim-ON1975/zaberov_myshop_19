@@ -1,5 +1,5 @@
 from catalog.forms import ProductForm, VersionForm
-from catalog.models import Product, Contacts, Version
+from catalog.models import Product, Contacts, Version, Category
 
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy, reverse
@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import Http404
 
+from catalog.services import get_categories_cache
 from core.settings import LOGIN_URL
 
 
@@ -20,12 +21,14 @@ class ProductsListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.order_by("-is_active", "-updated_at").filter(is_published=True).distinct()
+        queryset = queryset.order_by("-is_active", "-updated_at").filter(is_published=True,
+                                                                         category=self.kwargs.get('pk')).distinct()
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data['version_list'] = Version.objects.get_queryset(**kwargs)
+        context_data['category_list'] = Category.objects.get(pk=self.kwargs.get('pk'))
         return context_data
 
 
@@ -37,16 +40,28 @@ class ProductsUserListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        if self.request.user.groups.filter(name='moderators').exists():
-            queryset = queryset.order_by("-is_published", "-is_active", "-updated_at").distinct()
+        if self.request.user.groups.filter(name='moderators').exists() or self.request.user.is_superuser:
+            queryset = queryset.order_by("-is_published", "-is_active", "-updated_at").filter(
+                category=self.kwargs.get('pk')).distinct()
         else:
             queryset = queryset.order_by("-is_published", "-is_active", "-updated_at").filter(
-                user=self.request.user).distinct()
+                category=self.kwargs.get('pk'), user=self.request.user).distinct()
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data['version_list'] = Version.objects.get_queryset(**kwargs)
+        context_data['category_list'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        return context_data
+
+
+class CategoryListView(ListView):
+    model = Category
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['category_list'] = get_categories_cache()
         return context_data
 
 
@@ -91,6 +106,8 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
+        if self.request.user.groups.filter(name='moderators').exists() or self.request.user.is_superuser:
+            return self.object
         if not self.request.user.is_staff:
             raise Http404
         return self.object
@@ -109,7 +126,8 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         product = self.get_object()
-        return self.request.user == product.user
+        return self.request.user == product.user or self.request.user.is_superuser or self.request.user.groups.filter(
+            name='moderators').exists()
 
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
@@ -130,7 +148,8 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         product = self.get_object()
-        return self.request.user == product.user
+        return self.request.user == product.user or self.request.user.is_superuser or self.request.user.groups.filter(
+            name='moderators').exists()
 
 
 @login_required

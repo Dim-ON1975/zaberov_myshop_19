@@ -2,7 +2,7 @@
 {% load catalog_tags %}
 <header class="py-3 border-bottom">
     <div class="container d-flex flex-wrap justify-content-center mb-0">
-      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <a href="{% url 'catalog:category' %}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="32" fill="#ec6f0e" class="bi bi-pc-display p-0 m-0" viewBox="0 0 16 16">
           <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
         </svg>
@@ -32,14 +32,13 @@
 <nav class="py-2 mb-4 border-bottom" style="background-color: #d7e0eb;">
     <div class="container d-flex flex-wrap">
       <ul class="nav me-auto">
-        <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Главная</a></li>
+        <li class="nav-item"><a href="{% url 'catalog:category' %}" class="nav-link link-dark px-2 active" aria-current="page">Главная</a></li>
                 <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle nav-link link-dark px-2 active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Товары</a>
                       <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                        <li><a class="dropdown-item" href="/">Каталог</a></li>
+                        <li><a class="dropdown-item" href="{% url 'catalog:category' %}">Каталог</a></li>
                       {% if user.is_authenticated %}
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'catalog:products_user' %}">Мои товары</a></li>
                         <li><a class="dropdown-item" href="{% url 'catalog:create' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16" style="vertical-align: -.25em;">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
