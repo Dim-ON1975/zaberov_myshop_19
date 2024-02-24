@@ -12,7 +12,7 @@ from django.contrib.auth.tokens import default_token_generator as token_generato
 from django.core.exceptions import ValidationError
 from django.contrib.auth.views import LoginView, PasswordChangeDoneView, PasswordChangeView, PasswordResetView, \
     PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class MyLoginView(LoginView):
@@ -104,20 +104,20 @@ class MyPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = "account/password_change_done.html"
 
 
-class MyPasswordResetView(LoginRequiredMixin, PasswordResetView):
+class MyPasswordResetView(PasswordResetView):
     email_template_name = "account/password_reset_email.html"
     success_url = reverse_lazy("account:password_reset_done")
     template_name = "account/password_reset_form.html"
 
 
-class MyPasswordResetDoneView(LoginRequiredMixin, PasswordResetDoneView):
+class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = "account/password_reset_done.html"
 
 
-class MyPasswordResetConfirmView(LoginRequiredMixin, PasswordResetConfirmView):
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy("account:password_reset_complete")
     template_name = "account/password_reset_confirm.html"
 
 
-class MyPasswordResetCompleteView(LoginRequiredMixin, PasswordResetCompleteView):
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "account/password_reset_complete.html"
